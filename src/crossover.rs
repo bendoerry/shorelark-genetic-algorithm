@@ -1,5 +1,7 @@
 use crate::chromosome::Chromosome;
 
+mod uniform;
+
 pub trait CrossoverMethod {
     fn crossover(
         &self,
