@@ -49,6 +49,15 @@ impl FromIterator<f32> for Chromosome {
     }
 }
 
+impl IntoIterator for Chromosome {
+    type Item = f32;
+    type IntoIter = impl Iterator<Item = f32>;
+
+    fn into_iter(self) -> Self::IntoIter {
+        self.genes.into_iter()
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::Chromosome;
@@ -126,6 +135,22 @@ mod tests {
             assert_eq!(chromosome[0], 3.0);
             assert_eq!(chromosome[1], 1.0);
             assert_eq!(chromosome[2], 2.0);
+        }
+    }
+
+    mod into_iterator {
+        use super::chromosome;
+
+        #[test]
+        fn test() {
+            let chromosome = chromosome();
+
+            let genes: Vec<_> = chromosome.into_iter().collect();
+
+            assert_eq!(genes.len(), 3);
+            assert_eq!(genes[0], 3.0);
+            assert_eq!(genes[1], 1.0);
+            assert_eq!(genes[2], 2.0);
         }
     }
 }
