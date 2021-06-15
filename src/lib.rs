@@ -1,16 +1,32 @@
-pub struct GeneticAlgorithm;
+use individual::Individual;
+use selection::SelectionMethod;
 
-impl GeneticAlgorithm {
-    pub fn new() -> Self {
-        Self
+mod individual;
+mod selection;
+
+pub struct GeneticAlgorithm<S> {
+    selection_method: S,
+}
+
+impl<S> GeneticAlgorithm<S>
+where
+    S: SelectionMethod,
+{
+    pub fn new(selection_method: S) -> Self {
+        Self { selection_method }
     }
 
-    pub fn evolve<I>(&self, population: &[I]) -> Vec<I> {
+    pub fn evolve<I>(&self, rng: &mut dyn rand::RngCore, population: &[I]) -> Vec<I>
+    where
+        I: Individual,
+    {
         assert!(!population.is_empty());
 
         (0..population.len())
             .map(|_| {
-                // TODO selection
+                let parent_a = self.selection_method.select(rng, population);
+                let parent_b = self.selection_method.select(rng, population);
+
                 // TODO crossover
                 // TODO mutation
                 todo!()
