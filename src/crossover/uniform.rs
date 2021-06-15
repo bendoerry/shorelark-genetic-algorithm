@@ -19,6 +19,8 @@ impl CrossoverMethod for UniformCrossover {
         parent_a: &Chromosome,
         parent_b: &Chromosome,
     ) -> Chromosome {
+        assert_eq!(parent_a.len(), parent_b.len());
+
         let mut child = Vec::new();
         let gene_count = parent_a.len();
 
