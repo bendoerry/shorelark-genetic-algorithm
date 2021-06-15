@@ -5,7 +5,7 @@ impl GeneticAlgorithm {
         Self
     }
 
-    pub fn evolve(&self) {
+    pub fn evolve<I>(&self, population: &[I]) -> Vec<I> {
         todo!()
     }
 }
