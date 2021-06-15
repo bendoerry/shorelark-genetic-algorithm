@@ -53,3 +53,44 @@ where
             .collect()
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use rand::SeedableRng;
+    use rand_chacha::ChaCha8Rng;
+
+    use crate::crossover::UniformCrossover;
+    use crate::mutation::GaussianMutation;
+    use crate::selection::RouletteWheelSelection;
+
+    use super::GeneticAlgorithm;
+
+    #[test]
+    fn test() {
+        let mut rng = ChaCha8Rng::from_seed(Default::default());
+
+        let ga = GeneticAlgorithm::new(
+            RouletteWheelSelection::new(),
+            UniformCrossover::new(),
+            GaussianMutation::new(0.5, 0.5),
+        );
+
+        let mut population = vec![todo!()];
+
+        // We're running `.evolve()` a few times, so that the
+        // differences between initial and output population are
+        // easier to spot.
+        //
+        // No particular reason for a number of 10 - this test would
+        // be fine for 5, 20 or even 1000 generations; the only thing
+        // that'd change is the *magnitude* of difference between
+        // initial and output population.
+        for _ in 0..10 {
+            population = ga.evolve(&mut rng, &population);
+        }
+
+        let expected_population = vec![todo!()];
+
+        assert_eq!(population, expected_population);
+    }
+}
