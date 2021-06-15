@@ -35,3 +35,63 @@ impl MutationMethod for GaussianMutation {
         }
     }
 }
+
+#[cfg(test)]
+mod tests {
+
+    mod given_zero_chance {
+        mod and_zero_coefficient {
+
+            #[test]
+            fn does_not_change_the_original_chromosome() {
+                todo!();
+            }
+        }
+
+        mod and_nonzero_coefficient {
+
+            #[test]
+            fn does_not_change_the_original_chromosome() {
+                todo!();
+            }
+        }
+    }
+
+    mod given_fifty_fifty_chance {
+
+        mod and_zero_coefficient {
+
+            #[test]
+            fn does_not_change_the_original_chromosome() {
+                todo!();
+            }
+        }
+
+        mod and_nonzero_coefficient {
+
+            #[test]
+            fn slightly_changes_the_original_chromosome() {
+                todo!();
+            }
+        }
+    }
+
+    mod given_max_chance {
+
+        mod and_zero_coefficient {
+
+            #[test]
+            fn does_not_change_the_original_chromosome() {
+                todo!();
+            }
+        }
+
+        mod and_nonzero_coefficient {
+
+            #[test]
+            fn entirely_changes_the_original_chromosome() {
+                todo!();
+            }
+        }
+    }
+}
