@@ -82,7 +82,12 @@ mod tests {
             GaussianMutation::new(0.5, 0.5),
         );
 
-        let mut population = vec![todo!()];
+        let mut population = vec![
+            individual(&[0.0, 0.0, 0.0]), // fitness = 0.0
+            individual(&[1.0, 1.0, 1.0]), // fitness = 3.0
+            individual(&[1.0, 2.0, 1.0]), // fitness = 4.0
+            individual(&[1.0, 2.0, 4.0]), // fitness = 7.0
+        ];
 
         // We're running `.evolve()` a few times, so that the
         // differences between initial and output population are
@@ -96,7 +101,12 @@ mod tests {
             population = ga.evolve(&mut rng, &population);
         }
 
-        let expected_population = vec![todo!()];
+        let expected_population = vec![
+            individual(&[0.0, 0.0, 0.0, 0.0]),
+            individual(&[0.0, 0.0, 0.0, 0.0]),
+            individual(&[0.0, 0.0, 0.0, 0.0]),
+            individual(&[0.0, 0.0, 0.0, 0.0]),
+        ];
 
         assert_eq!(population, expected_population);
     }
