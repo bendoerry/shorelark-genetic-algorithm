@@ -102,10 +102,10 @@ mod tests {
         }
 
         let expected_population = vec![
-            individual(&[0.0, 0.0, 0.0, 0.0]),
-            individual(&[0.0, 0.0, 0.0, 0.0]),
-            individual(&[0.0, 0.0, 0.0, 0.0]),
-            individual(&[0.0, 0.0, 0.0, 0.0]),
+            individual(&[0.44769490, 2.0648358, 4.3058133]), // fitness ~= 6.8
+            individual(&[1.21268670, 1.5538777, 2.8869110]), // fitness ~= 5.7
+            individual(&[1.06176780, 2.2657390, 4.4287640]), // fitness ~= 7.8
+            individual(&[0.95909685, 2.4618788, 4.0247330]), // fitness ~= 7.4
         ];
 
         assert_eq!(population, expected_population);
