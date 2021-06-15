@@ -1,3 +1,7 @@
+use crate::individual::Individual;
+
+mod individual;
+
 pub struct GeneticAlgorithm;
 
 impl GeneticAlgorithm {
@@ -5,7 +9,10 @@ impl GeneticAlgorithm {
         Self
     }
 
-    pub fn evolve<I>(&self, population: &[I]) -> Vec<I> {
+    pub fn evolve<I>(&self, population: &[I]) -> Vec<I>
+    where
+        I: Individual,
+    {
         assert!(!population.is_empty());
 
         (0..population.len())
