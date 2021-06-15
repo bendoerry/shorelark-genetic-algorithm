@@ -4,6 +4,7 @@ use individual::Individual;
 use selection::SelectionMethod;
 
 mod chromosome;
+mod crossover;
 mod individual;
 mod selection;
 
