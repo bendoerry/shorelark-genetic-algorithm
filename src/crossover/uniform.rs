@@ -30,3 +30,24 @@ impl CrossoverMethod for UniformCrossover {
             .collect()
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use rand::SeedableRng;
+    use rand_chacha::ChaCha8Rng;
+
+    use crate::crossover::CrossoverMethod;
+
+    use super::UniformCrossover;
+
+    #[test]
+    fn test() {
+        let mut rng = ChaCha8Rng::from_seed(Default::default());
+        let parent_a = todo!();
+        let parent_b = todo!();
+
+        let child = UniformCrossover::new().crossover(&mut rng, &parent_a, &parent_b);
+
+        assert!(/* ... */);
+    }
+}
