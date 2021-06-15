@@ -1,3 +1,4 @@
+use std::iter::FromIterator;
 use std::ops::Index;
 
 #[derive(Clone, Debug)]
@@ -31,6 +32,20 @@ impl Index<usize> for Chromosome {
 
     fn index(&self, index: usize) -> &Self::Output {
         &self.genes[index]
+    }
+}
+
+// ---
+// | this is the "type of iterator" for which you want to provide
+// | `from_iter()` and `collect()`
+// |
+// | sometimes it's called the type the iterator *yields*
+// -------------- v-v
+impl FromIterator<f32> for Chromosome {
+    fn from_iter<T: IntoIterator<Item = f32>>(iter: T) -> Self {
+        Self {
+            genes: iter.into_iter().collect(),
+        }
     }
 }
 
@@ -94,6 +109,19 @@ mod tests {
         #[test]
         fn test() {
             let chromosome = chromosome();
+
+            assert_eq!(chromosome[0], 3.0);
+            assert_eq!(chromosome[1], 1.0);
+            assert_eq!(chromosome[2], 2.0);
+        }
+    }
+
+    mod from_iterator {
+        use super::super::Chromosome;
+
+        #[test]
+        fn test() {
+            let chromosome: Chromosome = vec![3.0, 1.0, 2.0].into_iter().collect();
 
             assert_eq!(chromosome[0], 3.0);
             assert_eq!(chromosome[1], 1.0);
