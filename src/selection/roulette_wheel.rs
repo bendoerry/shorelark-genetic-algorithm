@@ -24,16 +24,20 @@ impl SelectionMethod for RouletteWheelSelection {
 
 #[cfg(test)]
 mod tests {
+    use std::collections::BTreeMap;
+    use std::iter::FromIterator;
+
     use rand::SeedableRng;
     use rand_chacha::ChaCha8Rng;
 
-    use crate::individual::TestIndividual;
+    use crate::individual::{Individual, TestIndividual};
     use crate::selection::roulette_wheel::RouletteWheelSelection;
     use crate::selection::SelectionMethod;
 
     #[test]
     fn test_select() {
         let mut rng = ChaCha8Rng::from_seed(Default::default());
+        let method = RouletteWheelSelection::new();
 
         let population = vec![
             TestIndividual::new(2.0),
@@ -42,8 +46,24 @@ mod tests {
             TestIndividual::new(3.0),
         ];
 
-        let actual = RouletteWheelSelection::new().select(&mut rng, &population);
+        let mut actual_histogram = BTreeMap::new();
 
-        assert!(/* what here? */)
+        //               there is nothing special about this thousand;
+        //          v--v a number as low as fifty might do the trick, too
+        for _ in 0..1000 {
+            let fitness = method.select(&mut rng, &population).fitness() as i32;
+
+            *actual_histogram.entry(fitness).or_insert(0) += 1;
+        }
+
+        let expected_histogram = BTreeMap::from_iter(vec![
+            // (fitness, how many times this fitness has been chosen)
+            (1, 0),
+            (2, 0),
+            (3, 0),
+            (4, 0),
+        ]);
+
+        assert_eq!(actual_histogram, expected_histogram);
     }
 }
