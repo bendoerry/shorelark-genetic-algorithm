@@ -25,7 +25,6 @@ impl SelectionMethod for RouletteWheelSelection {
 #[cfg(test)]
 mod tests {
     use std::collections::BTreeMap;
-    use std::iter::FromIterator;
 
     use rand::SeedableRng;
     use rand_chacha::ChaCha8Rng;
@@ -56,13 +55,13 @@ mod tests {
             *actual_histogram.entry(fitness).or_insert(0) += 1;
         }
 
-        let expected_histogram = BTreeMap::from_iter(vec![
-            // (fitness, how many times this fitness has been chosen)
-            (1, 98),
-            (2, 202),
-            (3, 278),
-            (4, 422),
-        ]);
+        let expected_histogram = maplit::btreemap! {
+            // fitness => how many times this fitness has been chosen
+            1 => 98,
+            2 => 202,
+            3 => 278,
+            4 => 422,
+        };
 
         assert_eq!(actual_histogram, expected_histogram);
     }
