@@ -1,7 +1,7 @@
 use crate::individual::Individual;
 
 pub trait SelectionMethod {
-    fn select<I>(&self, population: &[I]) -> &I
+    fn select<'a, I>(&self, population: &'a [I]) -> &'a I
     where
         I: Individual;
 }
