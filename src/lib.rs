@@ -27,11 +27,12 @@ where
 
         (0..population.len())
             .map(|_| {
-                let parent_a = self.selection_method.select(rng, population);
-                let parent_b = self.selection_method.select(rng, population);
+                let parent_a = self.selection_method.select(rng, population).chromosome();
+                let parent_b = self.selection_method.select(rng, population).chromosome();
 
                 // TODO crossover
                 // TODO mutation
+                // TODO convert `Chromosome` back into `Individual`
                 todo!()
             })
             .collect()
