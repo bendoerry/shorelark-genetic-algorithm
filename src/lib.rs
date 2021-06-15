@@ -1,13 +1,19 @@
-use crate::individual::Individual;
+use individual::Individual;
+use selection::SelectionMethod;
 
 mod individual;
 mod selection;
 
-pub struct GeneticAlgorithm;
+pub struct GeneticAlgorithm<S> {
+    selection_method: S,
+}
 
-impl GeneticAlgorithm {
-    pub fn new() -> Self {
-        Self
+impl<S> GeneticAlgorithm<S>
+where
+    S: SelectionMethod,
+{
+    pub fn new(selection_method: S) -> Self {
+        Self { selection_method }
     }
 
     pub fn evolve<I>(&self, population: &[I]) -> Vec<I>
