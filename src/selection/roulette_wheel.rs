@@ -45,15 +45,15 @@ mod tests {
             TestIndividual::new(3.0),
         ];
 
-        let mut actual_histogram = BTreeMap::new();
+        // there is nothing special about this thousand; a number as low
+        // as fifty might do the trick, too          v--v
+        let actual_histogram: BTreeMap<i32, _> = (0..1000)
+            .map(|_| method.select(&mut rng, &population))
+            .fold(Default::default(), |mut histogram, individual| {
+                *histogram.entry(individual.fitness() as _).or_default() += 1;
 
-        //               there is nothing special about this thousand;
-        //          v--v a number as low as fifty might do the trick, too
-        for _ in 0..1000 {
-            let fitness = method.select(&mut rng, &population).fitness() as i32;
-
-            *actual_histogram.entry(fitness).or_insert(0) += 1;
-        }
+                histogram
+            });
 
         let expected_histogram = maplit::btreemap! {
             // fitness => how many times this fitness has been chosen
