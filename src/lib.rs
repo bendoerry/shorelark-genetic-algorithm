@@ -6,6 +6,8 @@ impl GeneticAlgorithm {
     }
 
     pub fn evolve<I>(&self, population: &[I]) -> Vec<I> {
+        assert!(!population.is_empty());
+
         todo!()
     }
 }
