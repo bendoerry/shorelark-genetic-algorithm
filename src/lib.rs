@@ -48,8 +48,7 @@ where
 
                 self.mutation_method.mutate(rng, &mut child);
 
-                // TODO convert `Chromosome` back into `Individual`
-                todo!()
+                I::create(child)
             })
             .collect()
     }
