@@ -27,13 +27,20 @@ mod tests {
     use rand::SeedableRng;
     use rand_chacha::ChaCha8Rng;
 
-    use crate::selection::{roulette_wheel::RouletteWheelSelection, SelectionMethod};
+    use crate::individual::TestIndividual;
+    use crate::selection::roulette_wheel::RouletteWheelSelection;
+    use crate::selection::SelectionMethod;
 
     #[test]
     fn test_select() {
         let mut rng = ChaCha8Rng::from_seed(Default::default());
 
-        let population = vec![ /* what here? */];
+        let population = vec![
+            TestIndividual::new(2.0),
+            TestIndividual::new(1.0),
+            TestIndividual::new(4.0),
+            TestIndividual::new(3.0),
+        ];
 
         let actual = RouletteWheelSelection::new().select(&mut rng, &population);
 
