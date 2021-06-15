@@ -36,7 +36,8 @@ where
                 let parent_a = self.selection_method.select(rng, population).chromosome();
                 let parent_b = self.selection_method.select(rng, population).chromosome();
 
-                // TODO crossover
+                let mut child = self.crossover_method.crossover(rng, parent_a, parent_b);
+
                 // TODO mutation
                 // TODO convert `Chromosome` back into `Individual`
                 todo!()
