@@ -1,6 +1,7 @@
 use individual::Individual;
 use selection::SelectionMethod;
 
+mod chromosome;
 mod individual;
 mod selection;
 
