@@ -1,4 +1,5 @@
 use crate::chromosome::Chromosome;
+pub use uniform::UniformCrossover;
 
 mod uniform;
 

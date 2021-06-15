@@ -1,4 +1,5 @@
 use crate::chromosome::Chromosome;
+pub use gaussian::GaussianMutation;
 
 mod gaussian;
 

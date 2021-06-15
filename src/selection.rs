@@ -1,4 +1,5 @@
 use crate::individual::Individual;
+pub use roulette_wheel::RouletteWheelSelection;
 
 mod roulette_wheel;
 
