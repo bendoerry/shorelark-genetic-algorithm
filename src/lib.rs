@@ -60,10 +60,17 @@ mod tests {
     use rand_chacha::ChaCha8Rng;
 
     use crate::crossover::UniformCrossover;
+    use crate::individual::{Individual, TestIndividual};
     use crate::mutation::GaussianMutation;
     use crate::selection::RouletteWheelSelection;
 
     use super::GeneticAlgorithm;
+
+    fn individual(genes: &[f32]) -> TestIndividual {
+        let chromosome = genes.iter().cloned().collect();
+
+        TestIndividual::create(chromosome)
+    }
 
     #[test]
     fn test() {
