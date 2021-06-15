@@ -16,3 +16,58 @@ impl Chromosome {
         self.genes.iter_mut()
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::Chromosome;
+
+    fn chromosome() -> Chromosome {
+        Chromosome {
+            genes: vec![3.0, 1.0, 2.0],
+        }
+    }
+
+    mod len {
+        use super::chromosome;
+
+        #[test]
+        fn test() {
+            assert_eq!(chromosome().len(), 3);
+        }
+    }
+
+    mod iter {
+        use super::chromosome;
+
+        #[test]
+        fn test() {
+            let chromosome = chromosome();
+            let genes: Vec<_> = chromosome.iter().collect();
+
+            assert_eq!(genes.len(), 3);
+            assert_eq!(genes[0], &3.0);
+            assert_eq!(genes[1], &1.0);
+            assert_eq!(genes[2], &2.0);
+        }
+    }
+
+    mod iter_mut {
+        use super::chromosome;
+
+        #[test]
+        fn test() {
+            let mut chromosome = chromosome();
+
+            chromosome.iter_mut().for_each(|gene| {
+                *gene *= 10.0;
+            });
+
+            let genes: Vec<_> = chromosome.iter().collect();
+
+            assert_eq!(genes.len(), 3);
+            assert_eq!(genes[0], &30.0);
+            assert_eq!(genes[1], &10.0);
+            assert_eq!(genes[2], &20.0);
+        }
+    }
+}
