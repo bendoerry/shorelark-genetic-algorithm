@@ -58,10 +58,10 @@ mod tests {
 
         let expected_histogram = BTreeMap::from_iter(vec![
             // (fitness, how many times this fitness has been chosen)
-            (1, 0),
-            (2, 0),
-            (3, 0),
-            (4, 0),
+            (1, 98),
+            (2, 202),
+            (3, 278),
+            (4, 422),
         ]);
 
         assert_eq!(actual_histogram, expected_histogram);
