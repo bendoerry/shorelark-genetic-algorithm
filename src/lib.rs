@@ -7,6 +7,7 @@ use selection::SelectionMethod;
 mod chromosome;
 mod crossover;
 mod individual;
+mod mutation;
 mod selection;
 
 pub struct GeneticAlgorithm<S> {
