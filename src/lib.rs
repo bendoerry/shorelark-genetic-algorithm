@@ -1,6 +1,7 @@
 use crate::individual::Individual;
 
 mod individual;
+mod selection;
 
 pub struct GeneticAlgorithm;
 
