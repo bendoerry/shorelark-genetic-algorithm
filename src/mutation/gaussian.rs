@@ -38,6 +38,22 @@ impl MutationMethod for GaussianMutation {
 
 #[cfg(test)]
 mod tests {
+    use rand::SeedableRng;
+    use rand_chacha::ChaCha8Rng;
+
+    use crate::mutation::MutationMethod;
+
+    use super::GaussianMutation;
+
+    fn actual(chance: f32, coeff: f32) -> Vec<f32> {
+        let mut child = vec![1.0, 2.0, 3.0, 4.0, 5.0].into_iter().collect();
+
+        let mut rng = ChaCha8Rng::from_seed(Default::default());
+
+        GaussianMutation::new(chance, coeff).mutate(&mut rng, &mut child);
+
+        child.into_iter().collect()
+    }
 
     mod given_zero_chance {
         mod and_zero_coefficient {
