@@ -8,6 +8,13 @@ impl GeneticAlgorithm {
     pub fn evolve<I>(&self, population: &[I]) -> Vec<I> {
         assert!(!population.is_empty());
 
-        todo!()
+        (0..population.len())
+            .map(|_| {
+                // TODO selection
+                // TODO crossover
+                // TODO mutation
+                todo!()
+            })
+            .collect()
     }
 }
