@@ -1,9 +1,10 @@
 #![feature(min_type_alias_impl_trait)]
 
-use crossover::CrossoverMethod;
 use individual::Individual;
-use mutation::MutationMethod;
-use selection::SelectionMethod;
+
+pub use crossover::{CrossoverMethod, UniformCrossover};
+pub use mutation::{GaussianMutation, MutationMethod};
+pub use selection::{RouletteWheelSelection, SelectionMethod};
 
 mod chromosome;
 mod crossover;
