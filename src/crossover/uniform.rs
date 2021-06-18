@@ -3,7 +3,7 @@ use rand::Rng;
 use crate::chromosome::Chromosome;
 use crate::crossover::CrossoverMethod;
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct UniformCrossover;
 
 impl UniformCrossover {

@@ -3,6 +3,7 @@ use rand::seq::SliceRandom;
 use crate::individual::Individual;
 use crate::selection::SelectionMethod;
 
+#[derive(Default)]
 pub struct RouletteWheelSelection;
 
 impl RouletteWheelSelection {
