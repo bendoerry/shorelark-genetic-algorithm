@@ -1,5 +1,6 @@
 #![feature(min_type_alias_impl_trait)]
 
+pub use chromosome::Chromosome;
 pub use crossover::{CrossoverMethod, UniformCrossover};
 pub use individual::Individual;
 pub use mutation::{GaussianMutation, MutationMethod};
