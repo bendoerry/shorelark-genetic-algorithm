@@ -1,8 +1,7 @@
 #![feature(min_type_alias_impl_trait)]
 
-use individual::Individual;
-
 pub use crossover::{CrossoverMethod, UniformCrossover};
+pub use individual::Individual;
 pub use mutation::{GaussianMutation, MutationMethod};
 pub use selection::{RouletteWheelSelection, SelectionMethod};
 
