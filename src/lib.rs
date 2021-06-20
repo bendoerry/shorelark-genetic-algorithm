@@ -6,6 +6,7 @@ pub use crossover::{CrossoverMethod, UniformCrossover};
 pub use individual::Individual;
 pub use mutation::{GaussianMutation, MutationMethod};
 pub use selection::{RouletteWheelSelection, SelectionMethod};
+pub use statistics::Statistics;
 
 mod chromosome;
 mod crossover;
@@ -36,13 +37,13 @@ where
         }
     }
 
-    pub fn evolve<I>(&self, rng: &mut dyn rand::RngCore, population: &[I]) -> Vec<I>
+    pub fn evolve<I>(&self, rng: &mut dyn rand::RngCore, population: &[I]) -> (Vec<I>, Statistics)
     where
         I: Individual,
     {
         assert!(!population.is_empty());
 
-        (0..population.len())
+        let new_population = (0..population.len())
             .map(|_| {
                 let parent_a = self.selection_method.select(rng, population).chromosome();
                 let parent_b = self.selection_method.select(rng, population).chromosome();
@@ -53,7 +54,11 @@ where
 
                 I::create(child)
             })
-            .collect()
+            .collect();
+
+        let stats = Statistics::new(population);
+
+        (new_population, stats)
     }
 }
 
