@@ -32,4 +32,16 @@ impl Statistics {
             avg_fitness: sum_fitness / (population.len() as f32),
         }
     }
+
+    pub fn min_fitness(&self) -> f32 {
+        self.min_fitness
+    }
+
+    pub fn max_fitness(&self) -> f32 {
+        self.max_fitness
+    }
+
+    pub fn avg_fitness(&self) -> f32 {
+        self.avg_fitness
+    }
 }
